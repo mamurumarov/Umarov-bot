@@ -39,6 +39,27 @@ class Database:
 """
         self.execute(sql, commit=True)
 
+    def create_Categories(self):
+        sql = """
+        CREATE TABLE Category(
+            id int NOT NULL PRIMARY KEY,
+            name varchar(255) NOT NULL UNIQUE
+        );        
+        """
+        self.execute(sql, commit=True)
+
+    def create_sub_categories(self):
+        sql = """
+        CREATE TABLE Subcategory(
+            id int NOT NULL PRIMARY KEY,
+            name varchar(255) NOT NULL UNIQUE,
+            cat_id int NOT NULL
+        );
+        """
+        self.execute(sql, commit=True)
+
+
+
     @staticmethod
     def format_args(sql, parameters: dict):
         sql += " AND ".join([
@@ -57,6 +78,12 @@ class Database:
     def select_all_users(self):
         sql = """
         SELECT * FROM Users
+        """
+        return self.execute(sql, fetchall=True)
+
+    def select_all_categories(self):
+        sql = """
+        SELECT * FROM Category;
         """
         return self.execute(sql, fetchall=True)
 

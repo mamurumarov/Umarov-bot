@@ -12,7 +12,9 @@ async def on_startup(dispatcher):
 
     # Ma'lumotlar bazasini yaratamiz:
     try:
-        db.create_table_users()
+        # db.create_table_users()
+        db.create_Categories()
+        db.create_sub_categories()
     except Exception as err:
         print(err)
 
