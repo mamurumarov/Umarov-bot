@@ -8,7 +8,7 @@ from loader import dp, db, bot
 from keyboards.default.main_menu import asosiy
 
 
-@dp.message_handler(CommandStart())
+@dp.message_handler(CommandStart(), state="*")
 async def bot_start(message: types.Message):
     name = message.from_user.full_name
     # Foydalanuvchini bazaga qo'shamiz
